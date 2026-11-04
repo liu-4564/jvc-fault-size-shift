@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this code or these results, please cite the paper below."
+title: "jvc-fault-size-shift: code and aggregated results for a study of fault-size shift in rolling-bearing diagnosis"
+abstract: "Code, aggregated result files and manuscript sources for a controlled, negative-result study of cross-severity fault-size shift in rolling-bearing diagnosis on CWRU, with external checks on the Paderborn and JNU datasets."
+authors:
+  - family-names: Liu
+    given-names: Jiarui
+    affiliation: "School of Mechanical and Electrical Equipment, Linyi Campus, Qingdao University of Technology, China"
+    orcid: "https://orcid.org/0009-0002-3035-9295"
+contact:
+  - family-names: Liu
+    given-names: Jiarui
+    email: ages257@outlook.com
+keywords:
+  - rolling bearing
+  - fault diagnosis
+  - time-frequency representation
+  - domain generalisation
+  - fault size
+  - transfer learning
+license: MIT
+version: 1.0.0
+date-released: "2026-11-04"

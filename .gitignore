@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Operating-system noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Public datasets are not redistributed (size); see README
+data/cwru/
+data/paderborn/
+data/jnu/
+
+# Feature/signal caches written by the experiment scripts at run time
+scripts/experiments/cache_*/
+scripts/experiments/*/cache/
+*.npz
+*.npy
+*.pt
+*.pth
+
+# Build artefacts written next to the manuscript sources
+manuscript/*.docx
+manuscript/*.pdf

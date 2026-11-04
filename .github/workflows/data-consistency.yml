@@ -1,0 +1,17 @@
+name: data-consistency
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      # the check uses the standard library only, so there is nothing to install
+      - name: Check committed JSON against the numbers in the paper
+        run: python tests/test_data_consistency.py
