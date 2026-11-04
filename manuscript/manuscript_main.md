@@ -325,7 +325,7 @@ A defensible next step is a same-bearing severity protocol—graded damage on on
 
 **Conflict of interest:** The author declares no potential conflicts of interest with respect to the research, authorship, and/or publication of this article.
 
-**Data availability:** The CWRU, Paderborn and JNU datasets are publicly available from the sources cited in Section 3.1. The window-level splits, evaluation scripts and trained weights that support the findings are available from the corresponding author on reasonable request and will be deposited in a public repository (Zenodo) upon acceptance.
+**Data availability:** The CWRU, Paderborn and JNU datasets are publicly available from the sources cited in Section 3.1. The window-level split construction, evaluation scripts and per-run result files that support the findings are openly available at https://github.com/liu-4564/jvc-fault-size-shift, and will be archived on Zenodo with a DOI upon acceptance. Trained model weights are available from the corresponding author on reasonable request.
 
 **Ethics:** Not applicable; the study uses publicly available benchmark data and involves no human participants or animals.
 

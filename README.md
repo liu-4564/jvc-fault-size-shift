@@ -159,3 +159,7 @@ If you use this code or these results, please cite the paper (see
 `CITATION.cff`, or the "Cite this repository" button on GitHub). The code is
 released under the MIT License (`LICENSE`); the manuscript text and figures are
 released under CC BY 4.0.
+
+This repository is the public companion to the submitted manuscript and the URL
+above is cited in the paper's Data availability statement. Once the paper is
+accepted it will be archived on Zenodo; the version DOI will be added here.
