@@ -42,7 +42,7 @@ Another line writes signal-processing operators into the network: wavelet convol
 
 ### 2.3 Severity as a shift variable
 
-Most transfer studies vary load, speed or sensor. Fault severity is a different axis: it changes impulse width, energy and resonance excitation while leaving speed and sensor untouched. Yet in the literature severity is usually absorbed as extra classes inside one condition, not treated as the domain variable. Paderborn (Lessmeier et al., 2016) is one of the few benchmarks with graded damage, and even there the grades are often pooled in CNN studies. Domain-generalisation surveys (Zhou et al., 2023) and the dataset-shift literature (Quiñonero-Candela et al., 2009) formalise label-preserving covariate shifts but provide no protocol where severity alone is the shift. The CWRU protocol itself has also been criticised (Smith and Randall, 2015; Zhao et al., 2020): overlapping windows and file-level splitting inflate metrics. The gap addressed here is therefore concrete—a severity-only protocol, with a fixed backbone, fixed selection rule and fixed data scale, in which the time–frequency representation is the single variable.
+Most transfer studies vary load, speed or sensor. Fault severity is a different axis: it changes impulse width, energy and resonance excitation while leaving speed and sensor untouched. Yet in the literature severity is usually absorbed as extra classes inside one condition, not treated as the domain variable. Paderborn (Lessmeier et al., 2016) is one of the few benchmarks with graded damage, and even there the grades are often pooled in CNN studies. Domain-generalisation surveys (Zhou et al., 2023) and the dataset-shift literature (Quiñonero-Candela et al., 2009) formalise label-preserving covariate shifts but provide no protocol where severity alone is the shift. The CWRU protocol itself has also been criticised (Smith and Randall, 2015; Zhao et al., 2020): overlapping windows and file-level splitting inflate metrics. The closest precedent is recent: transferring across CWRU damage sizes, Lee and Jung (2026) obtain 83–85% with a CNN and show that pooling severities during training can itself induce negative transfer. That establishes the phenomenon on this benchmark, but it varies the training design rather than the front-end representation, and it reports aggregate four-class accuracy, in which the invariant normal class supplies a fixed 25 points. Work that predicts severity as a label still outnumbers work that crosses it as a domain (Chen et al., 2021; Liu et al., 2022; Weng et al., 2023). The gap addressed here is therefore concrete—a severity-only protocol, with a fixed backbone, fixed selection rule and fixed data scale, in which the time–frequency representation is the single variable.
 
 ## 3 Data and diagnostic protocols
 
@@ -125,7 +125,7 @@ P2 is therefore not used to rank representations—it merely shows that the trai
 
 ### 4.3 P3: cross-severity drift is the open shift
 
-Table 4 Cross-severity drift accuracy (%, source domain 0.007@0HP; rows are target domains; plain is the mean ± SD over seeds 42/123/2026, env and order are seed 42)
+Table 4 Cross-severity drift accuracy (%, source domain 0.007@0HP; rows are target domains; plain is the mean ± SD over seeds 42/123/2026, SD taken over the three seeds as a population; env and order are seed 42)
 
 | Target domain | plain | env | order | IR recall (plain) | OR recall (plain) |
 |---|---|---|---|---|---|
@@ -339,6 +339,8 @@ Antoni J (2007) Fast computation of the kurtogram for the detection of transient
 
 Case Western Reserve University (n.d.) *Bearing Data Center*. Available at: https://engineering.case.edu/bearingdatacenter (accessed 20 October 2026).
 
+Chen Z, Huang R, Liao Y, Li J, Jin G and Li W (2021) Simultaneous fault type and severity identification using a two-branch domain adaptation network. *Measurement Science and Technology* 32(9): 094014.
+
 Fyfe KR and Munck EDS (1997) Analysis of computed order tracking. *Mechanical Systems and Signal Processing* 11(2): 187–205.
 
 Ganin Y, Ustinova E, Ajakan H, et al. (2016) Domain-adversarial training of neural networks. *Journal of Machine Learning Research* 17(59): 1–35.
@@ -349,7 +351,11 @@ He K, Zhang X, Ren S and Sun J (2016) Deep residual learning for image recogniti
 
 Janssens O, Slavkovikj V, Vervisch B, et al. (2016) Convolutional neural network based fault detection for rotating machinery. *Journal of Sound and Vibration* 377: 331–345.
 
+Lee J and Jung NH (2026) Cross-fault-size generalization in bearing fault diagnosis: analysis of negative transfer phenomenon. *Transactions of the Korean Society for Noise and Vibration Engineering* 36(2): 178–186.
+
 Lessmeier C, Kimotho JK, Zimmer D and Sextro W (2016) Condition monitoring of bearing damage in electromechanical drive systems by using motor current signals of electric motors: a benchmark data set for data-driven classification. In: *Proceedings of the European Conference of the Prognostics and Health Management Society (PHME)*. Prague, vol. 3, no. 1.
+
+Liu D, Cui L, Cheng W, Zhao D and Wen W (2022) Rolling bearing fault severity recognition via data mining integrated with convolutional neural network. *IEEE Sensors Journal* 22(6): 5768–5777.
 
 Liu Z, Wang Y, Vaidya S, et al. (2024) KAN: Kolmogorov–Arnold networks. arXiv:2404.19756.
 
@@ -374,6 +380,8 @@ Wang C (n.d.) *JNU-Bearing-Dataset*. GitHub. Available at: https://github.com/Cl
 Wang D, Shelhamer E, Liu S, Olshausen B and Darrell T (2021) Tent: fully test-time adaptation by entropy minimization. In: *Proceedings of the International Conference on Learning Representations (ICLR)*.
 
 Wen L, Li X, Gao L and Zhang Y (2018) A new convolutional neural network-based data-driven fault diagnosis method. *IEEE Transactions on Industrial Electronics* 65(7): 5990–5998.
+
+Weng C, Lu B, Gu Q and Zhao X (2023) A novel hierarchical transferable network for rolling bearing fault diagnosis under variable working conditions. *Nonlinear Dynamics* 111(12): 11315–11334.
 
 Zhang W, Peng G, Li C, Chen Y and Zhang Z (2017) A new deep learning model for fault diagnosis with good anti-noise and domain adaptation ability on raw vibration signals. *Sensors* 17(2): 425.
 
