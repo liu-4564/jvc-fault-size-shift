@@ -88,7 +88,7 @@ EfficientNet-B0 (ImageNet pretrained; Tan and Le, 2019) with a four-class fully 
 
 ![](fig1_framework.png){width=6.3in}
 
-**Figure 1** Pipeline and experimental design. 2048-point windows (12 kHz, CWRU drive end) are mapped by one of three representations—plain CWT, Hilbert-envelope CWT or speed-normalised envelope CWT—to 224×224 images, classified by an ImageNet-pretrained EfficientNet-B0 and evaluated under P1 (cross-load), P2 (cross-SNR) and P3 (cross-severity drift). Only the representation block differs between the rows of any results table.
+**Figure 1** Pipeline and experimental design. 2048-point windows (12 kHz, CWRU drive end) are mapped by one of three representations—plain CWT, Hilbert-envelope CWT or speed-normalised envelope CWT—to 224×224 images, classified by an ImageNet-pretrained EfficientNet-B0 and evaluated under P1 (cross-load), P2 (cross-SNR) and P3 (cross-severity drift).
 
 ## 4 Results
 
@@ -106,7 +106,7 @@ Cross-load barely matters here. The raw CWT stays above 99% across all three tar
 
 ### 4.2 P2: the training protocol decides, not the representation
 
-Table 3 Cross-SNR accuracy (%, source domain 0.007@0HP; noise is additive Gaussian white noise; single seed 42)
+Table 3 Cross-SNR accuracy (%, source domain 0.007@0HP; single seed 42)
 
 | Representation | Training setting | Clean | 10 dB | 0 dB | −5 dB |
 |---|---|---|---|---|---|
@@ -121,7 +121,7 @@ P2 is therefore not used to rank representations—it merely shows that the trai
 
 ![](fig2_p2_snr.png){width=6.2in}
 
-**Figure 2** Cross-SNR accuracy of the two representations under the two training settings (data of Table 3): (a) clean training; (b) noise training with SNR ~ U(−5,10) dB. The dotted line marks the 25% chance level. The 24-point lead of the envelope representation at 0 dB under clean training disappears once the training distribution covers the test noise level.
+**Figure 2** Cross-SNR accuracy of the two representations under the two training settings (data of Table 3): (a) clean training; (b) noise training with SNR ~ U(−5,10) dB. The dotted line marks the 25% chance level.
 
 ### 4.3 P3: cross-severity drift is the open shift
 
@@ -143,7 +143,7 @@ The largest per-domain SD is 2.12 points—this is not a seed accident. The two 
 
 One property of the benchmark inflates these four-class numbers: the normal class is the same record (files 97/98/99/100) in every domain, so its 100% recall is guaranteed by construction and contributes a fixed 25 points to every cell. Excluding it, the three-class mean is **50.03%** (per domain: 34.23, 33.56, 33.33, 31.33, 66.67, 65.77, 68.67, 66.67)—against a 33.3% chance level. The 0.014 domains are barely above chance; the 0.021 domains are around twice chance.
 
-Because size, bearing and recording change together, the observations below describe the composite severity drift. Wherever the text attributes a change to size alone, it is a working hypothesis, not an established cause.
+Because size, bearing and recording change together, the observations below describe the composite severity drift; any attribution to size alone is a working hypothesis.
 
 **First**, order normalisation adds nothing on top of the envelope: 56.69% vs 56.75%, well below the 2.12 per-domain SD, and both sit about 5.5 points below plain. Size changes temporal width and resonance excitation of the impulses, not the position of characteristic frequencies on the Hz axis—and order normalisation corrects only the latter. This is a direct counterexample to the claim that order analysis is a universal solution for variable conditions.
 
@@ -155,17 +155,17 @@ Because size, bearing and recording change together, the observations below desc
 
 ![](fig3_p3_domains.png){width=6.4in}
 
-**Figure 3** Cross-severity drift results. (a) Accuracy of the three representations on the eight target domains (seed 42) on one shared colour scale; the bold plain column is the three-seed protocol summarised by its seed-42 run. (b) Dumbbell plot of the same data: the three representations per domain are connected by their range, and plain additionally shows the three individual seeds (ticks) with mean ± SD (error bar). All four 0.014 domains sit between 42.5 and 50.5% regardless of representation, whereas the 0.021 group lies uniformly higher.
+**Figure 3** Cross-severity drift results. (a) Accuracy of the three representations on the eight target domains (seed 42) on one shared colour scale; the bold plain column is the three-seed protocol summarised by its seed-42 run. (b) Dumbbell plot of the same data: the three representations per domain are connected by their range, and plain additionally shows the three individual seeds (ticks) with mean ± SD (error bar).
 
 ### 4.4 Failure mode: the inner race is never recovered, its destination changes
 
 Figure 4 shows the failure structure of two representative target domains (plain, source 0.007@0HP; numeric matrices in Table S1). At 0.014@0HP, accuracy 50.00%: all 50 inner-race windows are read as outer race; all 50 outer-race windows as ball. At 0.021@0HP, accuracy 75.00%: all 50 inner-race windows go to ball, outer race is fully recovered, normal and ball stay intact.
 
-This is not a general collapse. The evidence used to *localise* a fault collapses. The inner race never comes back (0/50 in both domains; 0.00–6.00% over all eight), and only where it goes changes—outer race at 0.014, ball at 0.021. The outer race is erased at the milder shift and fully recovered at the larger one. Normal and ball stay intact. Every error therefore stays inside the fault classes: defective windows are never declared healthy at 0 HP, but the evidence separating the two bearing positions is gone. Inner-race windows get relabelled as another fault location. In maintenance this misdirects inspection—a growing inner-race defect is reported as a ball or outer-race defect—but it is a localisation failure, not a missed detection.
+The collapse is not general: the evidence used to *localise* a fault collapses. The inner race never comes back, and only where it goes changes—outer race at 0.014, ball at 0.021. Every error therefore stays inside the fault classes: defective windows are never declared healthy at 0 HP, but the evidence separating the two bearing positions is gone. Inner-race windows get relabelled as another fault location. In maintenance this misdirects inspection—a growing inner-race defect is reported as a ball or outer-race defect—but it is a localisation failure, not a missed detection.
 
 ![](fig4_confusion.png){width=6.1in}
 
-**Figure 4** Confusion matrices of the plain representation on 0.014@0HP (a) and 0.021@0HP (b); rows are true classes, columns predicted classes (50 test windows per class; numeric matrices in Table S1). All 50 inner-race windows go to outer race at 0.014 and to ball at 0.021, so the race is lost in both domains and only its destination changes; at 0.014 the outer-race class is also read entirely as ball, while the normal and ball classes stay on the diagonal, so every error stays inside the fault classes.
+**Figure 4** Confusion matrices of the plain representation on 0.014@0HP (a) and 0.021@0HP (b); rows are true classes, columns predicted classes (50 test windows per class; numeric matrices in Table S1). All 50 inner-race windows go to outer race at 0.014 and to ball at 0.021, so the race is lost in both domains and only its destination changes; at 0.014 the outer-race class is also read entirely as ball,.
 
 ### 4.5 Mechanism: the separable band migrates with severity at 0 HP
 
@@ -202,7 +202,7 @@ A head-capacity check is reported separately in Table S6: enlarging the classifi
 
 ![](fig6_remedies.png){width=5.4in}
 
-**Figure 6** Accuracy change of each remedy relative to the plain baseline (62.25%) on the cross-severity protocol, as a diverging bar chart (green: gains; vermillion: losses); the 3-seed fixed-band remedy is compared with the 3-seed baseline (62.52%). No remedy reaches a two-digit gain; the only positive entries are multi-source augmentation and two band-engineering remedies, and none of them restores inner-race recall on 0.014.
+**Figure 6** Accuracy change of each remedy relative to the plain baseline (62.25%) on the cross-severity protocol, as a diverging bar chart (green: gains; vermillion: losses); the 3-seed fixed-band remedy is compared with the 3-seed baseline (62.52%).
 
 ### 4.7 Band selection: discriminability and transferability are different attributes
 
@@ -226,7 +226,7 @@ Table 6 Severity-drift results with a fixed 4–4.8 kHz band (3 seeds, mean ± S
 
 The mean is 67.15%, 4.63 points above the three-seed full-band baseline (62.52%), and **no target-domain label is used**. Two limitations should be stated together. The fluctuation across seeds increases markedly—up to ±7.95 on 0.021@1HP, against ≤2.12 for the full-band baseline—so the benefit is not stable. And inner-race recall on 0.014 stays at 0.00 ± 0.00. The gain comes mainly from correct discrimination of the outer-race and ball classes. **The inter-race criterion is not repaired.**
 
-Placing Table 6 beside the per-band Fisher values (Table S2, one estimator throughout) yields the most tension-laden conclusion of this paper: **discriminability and transferability are two different attributes, and here they point in opposite directions**. At 0.014@0HP the most discriminable band is 2.5–3 kHz (F = 6.37), yet as a representation it gives only 47.50% (seed 42). The high band chosen by the oracle is not the peak of any 0.014 domain—the adjacent 3.5–4 kHz column holds F = 1.55 there—yet it gives 70.00 ± 2.12% over three seeds. The Fisher ratio measures separability within one record per class. Severity drift moves the peak out of the original band, so a band that is merely stable across domains remains usable after transfer even without a peak. This also explains why band selection cannot rescue 0.014: the peak band is drift-sensitive and fails on transfer, whereas the drift-insensitive high band is not discriminative enough to separate the races.
+Placing Table 6 beside the per-band Fisher values (Table S2, one estimator throughout) yields the most tension-laden conclusion of this paper: **discriminability and transferability are two different attributes, and here they point in opposite directions**. At 0.014@0HP the most discriminable band is 2.5–3 kHz (F = 6.37), yet as a representation it gives only 47.50% (seed 42). The high band chosen by the oracle is not the peak of any 0.014 domain—the adjacent 3.5–4 kHz column holds F = 1.55 there—yet it gives 70.00 ± 2.12% over three seeds. The Fisher ratio measures separability within one record per class. Severity drift moves the peak out of the original band, so a band that is merely stable across domains remains usable after transfer even without a peak.
 
 ### 4.8 Paderborn: the cross-size degradation is not reproduced
 
@@ -245,7 +245,7 @@ Table 7 Same-size vs cross-size transfer on Paderborn (3 seeds, mean ± SD, %)
 
 As a diagnostic control, a **within-bearing** time-segment split (first 15 segments of K001/KI01/KA01 for training, last 5 of the same bearings for testing, seed 42) yielded **100.00%** with all three recalls at 100%. This rules out the explanation that the representation cannot separate the races: on the same physical bearing the representation is perfectly separable, and the drop to 48%–54% is caused by the **cross-bearing** setting alone. The two rows of Table 7 therefore do not show a weaker CWRU effect; they show that the cross-size effect does not appear at all under multi-bearing conditions.
 
-**The Fisher magnitude on Paderborn is two orders lower than on CWRU** (0.01–0.10 vs 0.6–10; Table S3)—a protocol rather than implementation difference. Each CWRU class is a single record of one bearing, so variance comes only from window position. Each Paderborn class spans 2–3 bearings, and per-bearing variability drowns the spectral-shape differences caused by damage type. The sharp separable bands of Section 4.5 have no measurable counterpart here, and the migration does not appear in relative shape either: grade 1 peaks at 3.0–3.5 kHz whereas grade 2 peaks at 1.0–1.5 kHz. Accordingly, **the band migration is a phenomenon of the CWRU single-bearing protocol and cannot be extrapolated into a general mechanism**. Under multi-bearing conditions, per-bearing variability is a stronger shift source than damage size—which also explains why the same-size group reaches only 48.22% while the literature often reports >95% under random within-domain splits.
+**The Fisher magnitude on Paderborn is two orders lower than on CWRU** (0.01–0.10 vs 0.6–10; Table S3)—a protocol rather than implementation difference. Each CWRU class is a single record, so variance comes only from window position; each Paderborn class spans 2–3 bearings, where per-bearing variability drowns the spectral-shape differences caused by damage type. The sharp separable bands of Section 4.5 have no measurable counterpart here, and the migration does not appear in relative shape either: grade 1 peaks at 3.0–3.5 kHz whereas grade 2 peaks at 1.0–1.5 kHz. Accordingly, **the band migration is a phenomenon of the CWRU single-bearing protocol and cannot be extrapolated into a general mechanism**. Under multi-bearing conditions, per-bearing variability is a stronger shift source than damage size—which also explains why the same-size group reaches only 48.22% while the literature often reports >95% under random within-domain splits.
 
 Several limits apply: no ball class, grade 3 contains only KI16, each grade has 2–3 bearings and the A/B groups 1–3, and grade 1 and grade 2 come from different batches. So size and bearing individual cannot be fully separated. A definitive test would need graded damage on one bearing of one batch, which no public dataset provides.
 
@@ -271,7 +271,7 @@ Table S4 also reveals a **speed-distance effect**. The two tasks 800↔1000, whi
 
 The Fisher analysis (Table S5) adds two points. The magnitude is again 1–2 orders lower than on CWRU (peak F 0.22–0.49), confirming that the sharp severity-migrating band of Section 4.5 depends on "one record per class". And the peak band *does* move upward with speed: the inner/outer-race pair peaks at 1.0–1.5 kHz at 600 rpm and at 4.0–4.5 kHz at 800 and 1000 rpm. Band migration can therefore be driven by the operating condition rather than by damage size, with the same consequence that the source-domain band fails in the target. The hypothesis of "a fixed optimal band across conditions" does not hold on JNU either.
 
-Each class × speed of JNU is **one record**, the normal records are 30 s and the fault records 10 s, and the defect size is fixed. Table 8 therefore combines speed with recording differences rather than isolating a pure speed effect. The core proposition remains untested on this dataset (Section 5.3).
+Each class × speed of JNU is **one record**, the normal records are 30 s and the fault records 10 s, and the defect size is fixed. Table 8 therefore combines speed with recording differences rather than isolating a pure speed effect.
 
 **Cross-speed degradation is thus reproduced on JNU (73.83% vs an in-domain 99.89%), but its failure mode, magnitude and driving factor all differ from the CWRU severity-drift results.** Combined with Section 4.8, the CWRU mechanism is confined to "single bearing, single record, size as the only variable".
 
@@ -291,13 +291,13 @@ Damage size changes the morphological parameters of the impulse sequence—pulse
 
 ### 5.3 Limitations
 
-1. External validity rests on two additional datasets. On Paderborn (Section 4.8), band migration is not reproduced and same-size (48.22%) does not differ from cross-size (53.56%) by more than either seed SD. On JNU (Section 4.9), cross-speed degradation is severe but the failure switches to normal-class collapse. The applicability boundary is "single bearing, single record, size as the only variable".
+1. External validity rests on two additional datasets: on Paderborn (Section 4.8) same-size (48.22%) does not differ from cross-size (53.56%) by more than either seed SD. On JNU (Section 4.9), cross-speed degradation is severe but the failure switches to normal-class collapse. The applicability boundary is "single bearing, single record, size as the only variable".
 2. JNU has no size levels and one record per class × speed, so speed and recording batch cannot be separated. The third dataset tests only cross-speed.
 3. Other size levels (e.g. 0.028 in) and more seeds are not covered: the cross-severity result uses three seeds, the other protocols one.
 4. The multi-source setting tests only "0.007+0.014 → 0.021".
 5. The fixed-band benefit fluctuates strongly across seeds (worst 57.00 ± 7.95) and is unverified with more seeds.
 6. Adjacent train/test windows share 1536 samples, so the split is not strictly non-overlapping; differences below a few points are read conservatively.
-7. Only 0.007@0HP is used as source and only EfficientNet-B0, so representation ordering and failure modes are not checked for direction or backbone dependence. The conclusions are therefore read as comparisons within one aligned configuration—what changes when only the representation changes—and not as claims about the accuracy achievable under other backbones or sources.
+7. Only 0.007@0HP is used as source and only EfficientNet-B0, so representation ordering and failure modes are not checked for direction or backbone dependence. The conclusions are therefore comparisons within one aligned configuration—what changes when only the representation changes—not claims about other backbones or sources.
 8. The envelope is taken from the broadband signal without kurtogram band-pass selection, and per-image min–max normalisation removes the absolute energy scale that size partly changes; band-pass envelope and global-scale variants are planned.
 9. No formal statistical test is applied. Because test windows are temporally adjacent, a cluster bootstrap or paired test on per-window predictions is needed for confidence intervals.
 
