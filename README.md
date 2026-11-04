@@ -4,6 +4,8 @@ Code, data and manuscript sources for a negative-result study of cross-severity
 fault-size shift in rolling-bearing diagnosis on CWRU, with external checks on
 the Paderborn and JNU datasets. Submitted to the *Journal of Vibration and Control*.
 
+**Status:** manuscript **JVC-26-2391**, submitted 4 November 2026, under review.
+
 Author: Jiarui Liu, Qingdao University of Technology
 
 ## Repository layout
@@ -160,6 +162,7 @@ If you use this code or these results, please cite the paper (see
 released under the MIT License (`LICENSE`); the manuscript text and figures are
 released under CC BY 4.0.
 
-This repository is the public companion to the submitted manuscript and the URL
-above is cited in the paper's Data availability statement. Once the paper is
-accepted it will be archived on Zenodo; the version DOI will be added here.
+This repository is the public companion to the submitted manuscript (JVC-26-2391)
+and the URL above is cited in the paper's Data availability statement. Once the
+paper is accepted it will be archived on Zenodo; the version DOI will be added
+here.

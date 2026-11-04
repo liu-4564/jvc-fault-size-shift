@@ -1,3 +1,6 @@
+# Manuscript JVC-26-2391, submitted to the Journal of Vibration and Control
+# on 4 November 2026 and under review. The preferred-citation block will be
+# filled in once the paper is accepted.
 cff-version: 1.2.0
 message: "If you use this code or these results, please cite the paper below."
 title: "jvc-fault-size-shift: code and aggregated results for a study of fault-size shift in rolling-bearing diagnosis"
