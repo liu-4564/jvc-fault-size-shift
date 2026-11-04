@@ -291,15 +291,12 @@ Damage size changes the morphological parameters of the impulse sequence—pulse
 
 ### 5.3 Limitations
 
-1. External validity rests on two additional datasets: on Paderborn (Section 4.8) same-size (48.22%) does not differ from cross-size (53.56%) by more than either seed SD. On JNU (Section 4.9), cross-speed degradation is severe but the failure switches to normal-class collapse. The applicability boundary is "single bearing, single record, size as the only variable".
-2. JNU has no size levels and one record per class × speed, so speed and recording batch cannot be separated. The third dataset tests only cross-speed.
-3. Other size levels (e.g. 0.028 in) and more seeds are not covered: the cross-severity result uses three seeds, the other protocols one.
-4. The multi-source setting tests only "0.007+0.014 → 0.021".
-5. The fixed-band benefit fluctuates strongly across seeds (worst 57.00 ± 7.95) and is unverified with more seeds.
-6. Adjacent train/test windows share 1536 samples, so the split is not strictly non-overlapping; differences below a few points are read conservatively.
-7. Only 0.007@0HP is used as source and only EfficientNet-B0, so representation ordering and failure modes are not checked for direction or backbone dependence. The conclusions are therefore comparisons within one aligned configuration—what changes when only the representation changes—not claims about other backbones or sources.
-8. The envelope is taken from the broadband signal without kurtogram band-pass selection, and per-image min–max normalisation removes the absolute energy scale that size partly changes; band-pass envelope and global-scale variants are planned.
-9. No formal statistical test is applied. Because test windows are temporally adjacent, a cluster bootstrap or paired test on per-window predictions is needed for confidence intervals.
+1. External validity rests on two datasets. On Paderborn (Section 4.8) same-size (48.22%) does not differ from cross-size (53.56%) by more than either seed SD; on JNU (Section 4.9) cross-speed degradation is severe but the failure switches to normal-class collapse. JNU has no size levels and one record per class × speed, so speed and recording batch cannot be separated. The boundary is "single bearing, single record, size as the only variable".
+2. Coverage is partial: other size levels (e.g. 0.028 in) are not tested, the cross-severity result uses three seeds against one elsewhere, the multi-source setting tests only "0.007+0.014 → 0.021", and the fixed-band benefit fluctuates strongly across seeds (worst 57.00 ± 7.95) and is unverified with more seeds.
+3. Adjacent train/test windows share 1536 samples, so the split is not strictly non-overlapping; differences below a few points are read conservatively.
+4. Only 0.007@0HP is used as source and only EfficientNet-B0, so the ordering of representations and the failure modes are not checked across backbones or sources. The conclusions are therefore comparisons within one aligned configuration—what changes when only the representation changes.
+5. The envelope is taken from the broadband signal without kurtogram band-pass selection, and per-image min–max normalisation removes the absolute energy scale that size partly changes; band-pass envelope and global-scale variants are planned.
+6. No formal statistical test is applied. Because test windows are temporally adjacent, a cluster bootstrap or paired test on per-window predictions is needed for confidence intervals.
 
 ## 6 Conclusion
 
@@ -307,13 +304,13 @@ With CWRU as the object and a strictly aligned training configuration, this pape
 
 **Cross-load is saturated and cannot evidence methodological value.** The raw CWT reaches 99.50%, whereas envelope enhancement drops to 70.67%. Any "gain" reported on cross-load is likely a measurement of how well the method absorbs the trivial load shift, not how well it generalises.
 
-**The benefit of order normalisation is conditional.** It raises the cross-load accuracy of the envelope from 70.67% to 100.00% but adds nothing under severity drift (56.69% vs 56.75%), both 5.5 points below plain. It corrects frequency shift only—a narrow remedy for a narrow problem.
+**The benefit of order normalisation is conditional.** It lifts the envelope from 70.67% to 100.00% on cross-load but adds nothing under severity drift (56.69% vs 56.75%), both 5.5 points below plain; it corrects frequency shift only.
 
 **Severity drift is the hardest and least studied shift.** The baseline is 62.25% (62.52% over three seeds; 50.03% over the three drifting classes, against 33.3% chance). The inner race is never recovered; at 0.014 both races are lost, at 0.021 the outer race returns and inner-race windows move to the ball class. All errors stay inside the fault classes, so localisation, not detection, fails. Because each CWRU size is a separate bearing and recording, the effect is a property of this single-bearing protocol and is not attributed to size alone.
 
 **No standard remedy restores the lost class.** Of eight remedies, five are harmful, three give small gains (+0.25, +1.87, +4.63), and none restores inner-race recall on 0.014. The largest (67.15%) reallocates accuracy rather than repairing the criterion.
 
-**Discriminability and transferability are different attributes.** The discriminability-peak band fails on transfer, whereas a drift-insensitive high band has no peak in the 0.014 domains yet remains usable. This is the paper's most consequential finding: the band that separates classes best on one record is not the band that transfers best across recordings.
+**Discriminability and transferability are different attributes.** The discriminability-peak band fails on transfer, whereas a drift-insensitive high band has no peak in the 0.014 domains yet remains usable. The band that separates classes best on one record is not the band that transfers best across recordings.
 
 A defensible next step is a same-bearing severity protocol—graded damage on one bearing of one batch—which no public dataset provides. Until such data exist, the band-migration analysis of Section 4.5 should be read as a protocol-specific diagnostic rather than a general mechanism.
 
