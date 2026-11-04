@@ -165,7 +165,7 @@ The collapse is not general: the evidence used to *localise* a fault collapses. 
 
 ![](fig4_confusion.png){width=6.1in}
 
-**Figure 4** Confusion matrices of the plain representation on 0.014@0HP (a) and 0.021@0HP (b); rows are true classes, columns predicted classes (50 test windows per class; numeric matrices in Table S1). All 50 inner-race windows go to outer race at 0.014 and to ball at 0.021, so the race is lost in both domains and only its destination changes; at 0.014 the outer-race class is also read entirely as ball,.
+**Figure 4** Confusion matrices of the plain representation on 0.014@0HP (a) and 0.021@0HP (b); rows are true classes, columns predicted classes (50 test windows per class; numeric matrices in Table S1). All 50 inner-race windows go to outer race at 0.014 and to ball at 0.021, so the race is lost in both domains and only its destination changes; at 0.014 the outer-race class is also read entirely as ball.
 
 ### 4.5 Mechanism: the separable band migrates with severity at 0 HP
 
