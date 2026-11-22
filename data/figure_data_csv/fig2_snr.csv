@@ -1,0 +1,5 @@
+﻿test_snr_db,plain_clean,env_clean,plain_noise,env_noise
+clean,100,100,100,98
+10,99,100,100,100
+0,65,89,100,100
+-5,26.5,30.5,100,97.5

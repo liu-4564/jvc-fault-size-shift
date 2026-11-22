@@ -1,0 +1,14 @@
+# plot_figures.py needs numpy + matplotlib + scienceplots; export_figure_csv.py
+# needs numpy only. The remaining packages (scipy, pywavelets, torch,
+# torchvision, Pillow) are needed only to re-run the training and evaluation
+# scripts in scripts/experiments/, which require a CUDA GPU.
+# pandoc is a system binary used only by scripts/build_docx.py and is not a
+# Python package, so it cannot be listed here; see README, Environment.
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+scienceplots>=2.1.0
+pywavelets>=1.4
+torch>=2.0
+torchvision>=0.15
+Pillow>=9.5

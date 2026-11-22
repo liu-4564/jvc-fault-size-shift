@@ -1,0 +1,9 @@
+﻿remedy,delta_points
+Fixed 4-4.8 kHz band,4.63
+Band-masking training,1.87
+Multi-source augmentation,0.25
+Entropy TTA,-3.13
+Envelope demodulation,-5.5
+Order normalisation,-5.56
+Entropy band selection,-9.56
+BN adaptation,-15.87
