@@ -1,12 +1,11 @@
-# jvc-fault-size-shift
+# fault-size-shift
 
 Code and aggregated results for a controlled study of cross-severity fault-size
 shift in rolling-bearing diagnosis: three time–frequency representations
 compared on CWRU, with external checks on the Paderborn and JNU datasets.
 
 The repository contains experiment code, the aggregated result files those runs
-produced, and the plotting code that turns them into figures. It contains no
-manuscript text.
+produced, and the plotting code that turns them into figures.
 
 ## Repository layout
 

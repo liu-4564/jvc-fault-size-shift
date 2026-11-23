@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Check that the committed JSON reproduces the numbers printed in the paper.
+"""Check that the committed JSON still holds the reference values.
 
 Standard library only, no dataset and no GPU needed:
 
     python tests/test_data_consistency.py
 
-Every assertion below is a number that appears in the manuscript or the
-supplementary material, compared against data/*.json. If a script is ever
-re-run and the results change, this test fails and the paper has to be
-updated -- which is the point.
+Every assertion below pins one reference number against data/*.json. If a
+script is ever re-run and the results change, this test fails, which is the
+point.
 """
 import json
 import os

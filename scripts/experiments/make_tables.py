@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""make_tables.py -- render the manuscript tables from multisource_matrix.json.
+"""make_tables.py -- render result tables from multisource_matrix.json.
 
 Produces tables.md with:
   T1  the source x target accuracy matrix (per backbone)

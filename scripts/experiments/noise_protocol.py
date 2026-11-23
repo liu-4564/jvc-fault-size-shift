@@ -1,5 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
-"""noise_protocol.py -- P2 supplementary run across signal-to-noise ratios
+"""noise_protocol.py -- P2 auxiliary run across signal-to-noise ratios
 
 Protocol:
   source domain 0.007@0HP, 4 classes (normal/inner/ball/outer)
